@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import MHeader from '@/components/m-header/m-header'
-import Tab from '@/components/tab/tab'
+import MHeader from 'components/m-header/m-header'
+import Tab from 'components/tab/tab'
 export default {
   components: {
-    MHeader,
-    Tab
+    'm-header': MHeader,
+    'tab': Tab
   }
 }
 </script>
