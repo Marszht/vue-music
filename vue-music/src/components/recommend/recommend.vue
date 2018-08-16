@@ -15,7 +15,8 @@
       <ul>
         <li class="item" v-for="(item, index) in musicData" :key="index" >
           <div class="icon">
-            <img :src="item.musicImgSrc" width="60" height="60" alt="">
+            <!-- src换成v-lazy 不用全部请求  提升加载速度，节省流量-->
+            <img v-lazy="item.musicImgSrc" width="60" height="60" alt="">
           </div>
           <div class="text">
             <h2 class="name">{{item.name}}</h2>
@@ -24,7 +25,10 @@
         </li>
       </ul>
       </div>
-     <div class="tips">没有更多歌曲了~</div>
+      <!-- 因为是本地获取数据 -->
+      <!-- <div class="loading-container" v-if="!musicData.length">
+        <loading/> -->
+      <!-- </div> -->
      </scroll>
       </div>
        </template>
@@ -34,6 +38,7 @@ import { getRecommend, getDiscList } from 'api/recommend.js'
 import {ERR_OK} from 'api/config'
 import Slider from 'base/slider/slider'
 import Scroll from 'base/scroll/scroll'
+// import Loading from 'base/loading/loading'
 export default {
   data() {
     return {
@@ -45,15 +50,11 @@ export default {
   components: {
     'slider': Slider,
     'scroll': Scroll
+    // 'loading': Loading
   },
   created() {
-    this.setTimeout(() => {
-      this._getRecommend()
-    }, 20)
-    this.$refs.scroll.refresh()
-    this.$nextTick(() => {
-      this._getDiscList()
-    })
+    this._getRecommend()
+    this._getDiscList()
   },
   methods: {
     _getRecommend() {
@@ -69,7 +70,7 @@ export default {
       getDiscList().then((res) => {
         // 对数据进行解构
         this.musicData = (res.data.musicData)
-        console.log(res.data.musicData)
+        // console.log(res.data.musicData)
       })
     }
   }
@@ -125,10 +126,10 @@ export default {
         width: 100%
         top: 50%
         transform: translateY(-50%)
-  .tips
-    text-align: center;
-    margin: 12px auto;
-    widows: 200px;
-    font-size: 80%;
-    color: gray;
+  // .tips
+  //   text-align: center;
+  //   margin: 12px auto;
+  //   widows: 200px;
+  //   font-size: 80%;
+  //   color: gray;
 </style>

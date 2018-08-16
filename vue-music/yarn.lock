@@ -3526,6 +3526,12 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
+lazy-load@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/lazy-load/-/lazy-load-0.0.2.tgz#b4e98237a8e0deea30abae5f8b576eb1c72be50f"
+  dependencies:
+    lodash-node "^3.3.0"
+
 lcid@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/lcid/-/lcid-1.0.0.tgz#308accafa0bc483a3867b4b6f2b9506251d1b835"
@@ -3592,6 +3598,10 @@ locate-path@^2.0.0:
   dependencies:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
+
+lodash-node@^3.3.0:
+  version "3.10.2"
+  resolved "https://registry.yarnpkg.com/lodash-node/-/lodash-node-3.10.2.tgz#2598d5b1b54e6a68b4cb544e5c730953cbf632f7"
 
 lodash.camelcase@^4.3.0:
   version "4.3.0"
@@ -5996,6 +6006,10 @@ vue-eslint-parser@^2.0.3:
 vue-hot-reload-api@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
+
+vue-lazyload@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.2.6.tgz#baa04c172d52a812608eb12c7a6bfb14f5c91079"
 
 vue-loader@^13.3.0:
   version "13.7.2"
