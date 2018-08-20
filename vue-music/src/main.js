@@ -12,6 +12,7 @@ import 'common/stylus/index.styl'
 // 使整个body 都没有 300毫秒延迟
 fastclick.attach(document.body)
 Vue.config.productionTip = false
+// 在全局引入，然后后面的组件都可以用 把图片src 换成v-lazy
 Vue.use(VueLazyload, {
   loading: require('common/image/default.png')
 })

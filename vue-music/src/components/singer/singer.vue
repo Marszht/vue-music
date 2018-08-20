@@ -1,25 +1,13 @@
 <template>
   <div>
     <div class="singer">
-     <scroll class="listview"  ref="listview">
-  <ul>
-  <li v-for="(group, index) in singers" class="list-group" :key="index">
- <h2 class="list-group-title">{{group.title}}</h2>
- <ul>
-   <li v-for="(item, index) in group.item" :key="index" class="list-group-item">
-     <img :src="item.avatar" class="avatar" alt="">
-     <span class="name">{{item.name}}</span>
-   </li>
- </ul>
-  </li>
-</ul>
-</scroll>
+<list-view :data="singers"></list-view>
     </div>
   </div>
 </template>
 
 <script>
-import Scroll from 'base/scroll/scroll'
+// import Scroll from 'base/scroll/scroll'
 import ListView from 'base/listview/listview'
 // 获取数据方法
 import {getSingerList} from 'api/singer'
@@ -29,8 +17,8 @@ const HOTE_NAME = '热门'
 const HOT_SINGER_LEN = 10
 export default {
   components: {
-    'list-view': ListView,
-    'scroll': Scroll
+    'list-view': ListView
+    // 'scroll': Scroll
   },
   data() {
     return {
@@ -46,9 +34,10 @@ export default {
       getSingerList().then((res) => {
         // console.log(ERR_OK)
         if (ERR_OK === res.code) {
-          this.singers = res.data.list
+          // 记得把接收到的数据进行转化
+          this.singers = this._normalizeSinger(res.data.list)
           // 需要什么数据就用什么数据
-          console.log(this._normalizeSinger(this.singers))
+          // console.log(this._normalizeSinger(this.singers))
         }
       })
     },
@@ -85,7 +74,7 @@ export default {
         }))
       })
       // 没有经过处理的对象
-      console.log(map)
+      // console.log(map)
       // 为了得到有序表我们需要处理map
       let hot = [] // 放热门数据
       let res = [] // a-z中的数据
@@ -117,67 +106,67 @@ export default {
   top 88px
   bottom 0
   width 100%
-  .listview
-    position: relative
-    width: 100%
-    height: 100%
-    overflow: hidden
-    background: $color-background
-    .list-group
-      padding-bottom: 30px
-      .list-group-title
-        height: 30px
-        line-height: 30px
-        padding-left: 20px
-        font-size: $font-size-small
-        color: $color-text-l
-        background: $color-highlight-background
-      .list-group-item
-        display: flex
-        align-items: center
-        padding: 20px 0 0 30px
-        .avatar
-          width: 50px
-          height: 50px
-          border-radius: 50%
-        .name
-          margin-left: 20px
-          color: $color-text-l
-          font-size: $font-size-medium
-    .list-shortcut
-      position: absolute
-      z-index: 30
-      right: 0
-      top: 50%
-      transform: translateY(-50%)
-      width: 20px
-      padding: 20px 0
-      border-radius: 10px
-      text-align: center
-      background: $color-background-d
-      font-family: Helvetica
-      .item
-        padding: 3px
-        line-height: 1
-        color: $color-text-l
-        font-size: $font-size-small
-        &.current
-          color: $color-theme
-    .list-fixed
-      position: absolute
-      top: 0
-      left: 0
-      width: 100%
-      .fixed-title
-        height: 30px
-        line-height: 30px
-        padding-left: 20px
-        font-size: $font-size-small
-        color: $color-text-l
-        background: $color-highlight-background
-    .loading-container
-      position: absolute
-      width: 100%
-      top: 50%
-      transform: translateY(-50%)
+  // .listview
+  //   position: relative
+  //   width: 100%
+  //   height: 100%
+  //   overflow: hidden
+  //   background: $color-background
+  //   .list-group
+  //     padding-bottom: 30px
+  //     .list-group-title
+  //       height: 30px
+  //       line-height: 30px
+  //       padding-left: 20px
+  //       font-size: $font-size-small
+  //       color: $color-text-l
+  //       background: $color-highlight-background
+  //     .list-group-item
+  //       display: flex
+  //       align-items: center
+  //       padding: 20px 0 0 30px
+  //       .avatar
+  //         width: 50px
+  //         height: 50px
+  //         border-radius: 50%
+  //       .name
+  //         margin-left: 20px
+  //         color: $color-text-l
+  //         font-size: $font-size-medium
+  //   .list-shortcut
+  //     position: absolute
+  //     z-index: 30
+  //     right: 0
+  //     top: 50%
+  //     transform: translateY(-50%)
+  //     width: 20px
+  //     padding: 20px 0
+  //     border-radius: 10px
+  //     text-align: center
+  //     background: $color-background-d
+  //     font-family: Helvetica
+  //     .item
+  //       padding: 3px
+  //       line-height: 1
+  //       color: $color-text-l
+  //       font-size: $font-size-small
+  //       &.current
+  //         color: $color-theme
+  //   .list-fixed
+  //     position: absolute
+  //     top: 0
+  //     left: 0
+  //     width: 100%
+  //     .fixed-title
+  //       height: 30px
+  //       line-height: 30px
+  //       padding-left: 20px
+  //       font-size: $font-size-small
+  //       color: $color-text-l
+  //       background: $color-highlight-background
+  //   .loading-container
+  //     position: absolute
+  //     width: 100%
+  //     top: 50%
+  //     transform: translateY(-50%)
 </style>
